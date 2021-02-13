@@ -1,7 +1,8 @@
 ﻿using Business.Abstract;
 using DataAccess.Abstract;
-using DataAccess.Concrete.ınMemory;
+using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -19,10 +20,10 @@ namespace Business.Concrete
 
         public List<Product> GetAll()
         {
-            //iş kodları
-            //Yetkisi varmı?
+            //İş kodları
+            //Yetkisi var mı?
+
             return _productDal.GetAll();
-            
         }
 
         public List<Product> GetAllByCategoryId(int id)
@@ -32,8 +33,12 @@ namespace Business.Concrete
 
         public List<Product> GetByUnitPrice(decimal min, decimal max)
         {
-            return _productDal.GetAll(p=>p.UnitPrice >=min && p.UnitPrice <=max); // İki fiyat aralığında olan datayı getirir.
+            return _productDal.GetAll(p=>p.UnitPrice>=min && p.UnitPrice<=max);
+        }
+
+        public List<ProductDetailDto> GetProductDetails()
+        {
+            return _productDal.GetProductDetails();
         }
     }
 }
- 
